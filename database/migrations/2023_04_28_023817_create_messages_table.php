@@ -15,14 +15,10 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('chat_id');
-            $table->unsignedBigInteger('user_id');
-            $table->text('content');
+            $table->integer('incoming_msg_id');
+            $table->integer('outgoing_msg_id');
+            $table->text('msg');
             $table->timestamps();
-
-            // Khóa ngoại liên kết đến bảng 'users' và bảng 'chats'
-            $table->foreign('chat_id')->references('id')->on('chats');
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
